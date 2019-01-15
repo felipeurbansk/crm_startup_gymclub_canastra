@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/10/2017 16:18:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="controller.Pessoa" table="pessoa" catalog="canastra" optimistic-lock="version">
+        <id name="pessoaId" type="java.lang.Integer">
+            <column name="pessoa_id" />
+            <generator class="identity" />
+        </id>
+        <property name="nome" type="string">
+            <column name="nome" length="150" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="120" not-null="true" />
+        </property>
+        <property name="telFixo" type="string">
+            <column name="tel_fixo" length="10" not-null="true" />
+        </property>
+        <property name="telCel" type="string">
+            <column name="tel_cel" length="11" not-null="true" />
+        </property>
+        <set name="fornecedors" table="fornecedor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoa_pessoa_id" not-null="true" />
+            </key>
+            <one-to-many class="controller.Fornecedor" />
+        </set>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoa_pessoa_id" not-null="true" />
+            </key>
+            <one-to-many class="controller.Usuario" />
+        </set>
+        <set name="enderecos" table="endereco" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoa_pessoa_id" not-null="true" />
+            </key>
+            <one-to-many class="controller.Endereco" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/10/2017 16:18:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="controller.Endereco" table="endereco" catalog="canastra" optimistic-lock="version">
+        <id name="enderecoId" type="java.lang.Integer">
+            <column name="endereco_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cidade" class="controller.Cidade" fetch="select">
+            <column name="cidade_cidade_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pessoa" class="controller.Pessoa" fetch="select">
+            <column name="pessoa_pessoa_id" not-null="true" />
+        </many-to-one>
+        <property name="rua" type="string">
+            <column name="rua" length="150" not-null="true" />
+        </property>
+        <property name="numero" type="int">
+            <column name="numero" not-null="true" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="bairro" length="100" not-null="true" />
+        </property>
+        <property name="cep" type="string">
+            <column name="cep" length="8" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

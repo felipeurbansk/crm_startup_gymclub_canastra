@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/10/2017 16:18:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="controller.Transacao" table="transacao" catalog="canastra" optimistic-lock="version">
+        <id name="transacaoId" type="java.lang.Integer">
+            <column name="transacao_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="situacao" class="controller.Situacao" fetch="select">
+            <column name="situacao_situacao_id" not-null="true" />
+        </many-to-one>
+        <property name="data" type="timestamp">
+            <column name="data" length="19" not-null="false" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="65535" not-null="true" />
+        </property>
+        <set name="contarecebers" table="contareceber" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="transacao_transacao_id" not-null="true" />
+            </key>
+            <one-to-many class="controller.Contareceber" />
+        </set>
+        <set name="contapagars" table="contapagar" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="transacao_transacao_id" not-null="true" />
+            </key>
+            <one-to-many class="controller.Contapagar" />
+        </set>
+    </class>
+</hibernate-mapping>

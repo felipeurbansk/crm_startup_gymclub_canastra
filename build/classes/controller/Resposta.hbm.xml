@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05/11/2017 14:50:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="controller.Resposta" table="resposta" catalog="canastra" optimistic-lock="version">
+        <id name="respostaId" type="java.lang.Integer">
+            <column name="resposta_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="chamado" class="controller.Chamado" fetch="select">
+            <column name="chamado_chamado_id" not-null="true" />
+        </many-to-one>
+        <property name="resposta" type="string">
+            <column name="resposta" length="65535" not-null="true" />
+        </property>
+        <property name="data" type="timestamp">
+            <column name="data" length="19" />
+        </property>
+        <property name="atendente" type="java.lang.Integer">
+            <column name="atendente" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

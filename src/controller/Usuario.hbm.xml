@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/10/2017 16:18:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="canastra" name="controller.Usuario" optimistic-lock="version" table="usuario">
+    <id name="usuarioId" type="java.lang.Integer">
+      <column name="usuario_id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="controller.Nivelacesso" fetch="select" name="nivelacesso">
+      <column name="nivelAcesso_nivelAcesso_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="controller.Pessoa" fetch="select" name="pessoa">
+      <column name="pessoa_pessoa_id" not-null="true"/>
+    </many-to-one>
+    <property name="sexo" type="char">
+      <column length="1" name="sexo" not-null="true"/>
+    </property>
+    <property name="dataNasc" type="date">
+      <column length="10" name="data_nasc" not-null="true"/>
+    </property>
+    <property name="cpf" type="string">
+      <column length="11" name="cpf" not-null="true"/>
+    </property>
+    <property name="login" type="string">
+      <column length="30" name="login" not-null="true"/>
+    </property>
+    <property name="senha" type="string">
+      <column length="255" name="senha" not-null="true"/>
+    </property>
+    <property name="rg" type="string">
+      <column length="9" name="rg" not-null="true"/>
+    </property>
+    <property name="dataConta" type="timestamp">
+      <column length="19" name="data_conta"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="acessos" table="acesso">
+      <key>
+        <column name="usuario_usuario_id" not-null="true"/>
+      </key>
+      <one-to-many class="controller.Acesso"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="caixas" table="caixa">
+      <key>
+        <column name="usuario_usuario_id" not-null="true"/>
+      </key>
+      <one-to-many class="controller.Caixa"/>
+    </set>
+  </class>
+</hibernate-mapping>

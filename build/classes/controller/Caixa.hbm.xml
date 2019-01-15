@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/10/2017 16:18:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="controller.Caixa" table="caixa" catalog="canastra" optimistic-lock="version">
+        <id name="caixaId" type="java.lang.Integer">
+            <column name="caixa_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuario" class="controller.Usuario" fetch="select">
+            <column name="usuario_usuario_id" not-null="true" />
+        </many-to-one>
+        <property name="dataInicio" type="timestamp">
+            <column name="data_inicio" length="19" />
+        </property>
+        <property name="dataFim" type="timestamp">
+            <column name="data_fim" length="19" />
+        </property>
+        <property name="saldoInicial" type="float">
+            <column name="saldo_inicial" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="saldoFinal" type="java.lang.Float">
+            <column name="saldo_final" precision="12" scale="0" />
+        </property>
+        <property name="observacao" type="string">
+            <column name="observacao" length="65535" />
+        </property>
+        <set name="movimentos" table="movimento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="caixa_caixa_id" not-null="true" />
+            </key>
+            <one-to-many class="controller.Movimento" />
+        </set>
+    </class>
+</hibernate-mapping>

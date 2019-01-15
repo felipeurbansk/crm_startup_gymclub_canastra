@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4c0bc7f4-fe73-4658-97b7-336fdb47cd0a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<field name="contaReceberId" class="java.lang.Integer"/>
+	<field name="vencimento" class="java.util.Date"/>
+	<field name="valor" class="java.lang.Float"/>
+	<field name="total" class="java.lang.Float"/>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="transacao.situacao.status" class="java.lang.String"/>
+	<field name="transacao.situacao.situacaoId" class="java.lang.Integer"/>
+	<variable name="TOTAL_CONTA" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{COLUMN_NUMBER}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="131" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="148" y="0" width="263" height="62" uuid="ee63113f-adff-4691-a8ff-e71a5863c365"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Relatório]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="212" y="62" width="137" height="22" uuid="37186988-190e-492d-93b7-b4ad6d62b934"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Conta a Receber]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="143" height="131" uuid="58ef95d7-2da9-459d-bd4b-105a54c5091e"/>
+				<imageExpression><![CDATA["C:\\Users\\urban\\OneDrive\\Documentos\\NetBeansProjects\\FAFIT\\DLS\\prjCanastra\\src\\relatorios\\Marca\\TatuCanastraMarcadAgua.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="46" height="23" uuid="e5945d1b-9387-4eb7-b2d7-d43964860939"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="0" width="217" height="23" uuid="cf5693c2-600e-4b95-bec5-7c051bc57996"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DESCRIÇÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="0" width="100" height="23" uuid="3fc2e3d3-4422-4417-a57a-fca9f41f3c08"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[VENCIMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="0" width="100" height="23" uuid="2310b8fb-9439-439b-9ab9-8e053ab67f9d"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="464" y="0" width="91" height="23" uuid="db53dda9-7c2f-4ed8-b1bb-4e33efc284ae"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[SITUAÇÂO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="46" height="21" uuid="0b0f42c6-468b-4cf3-b54e-dca0e6f4db56"/>
+				<box>
+					<pen lineWidth="0.15" lineStyle="Solid"/>
+					<topPen lineWidth="0.15" lineStyle="Solid"/>
+					<leftPen lineWidth="0.15" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.15" lineStyle="Solid"/>
+					<rightPen lineWidth="0.15" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{contaReceberId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="48" y="0" width="216" height="21" uuid="cfb385e0-a0b0-4958-a80c-88e288a573b0"/>
+				<box>
+					<pen lineWidth="0.15" lineStyle="Solid"/>
+					<topPen lineWidth="0.15" lineStyle="Solid"/>
+					<leftPen lineWidth="0.15" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.15" lineStyle="Solid"/>
+					<rightPen lineWidth="0.15" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="264" y="0" width="100" height="21" uuid="c0c70022-7512-44b0-9c68-d588791ceb8a"/>
+				<box>
+					<pen lineWidth="0.15" lineStyle="Solid"/>
+					<topPen lineWidth="0.15" lineStyle="Solid"/>
+					<leftPen lineWidth="0.15" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.15" lineStyle="Solid"/>
+					<rightPen lineWidth="0.15" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{vencimento})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="364" y="0" width="100" height="21" uuid="d18f6bb2-ac99-4e12-8f0d-1655b6478d34"/>
+				<box>
+					<pen lineWidth="0.15" lineStyle="Solid"/>
+					<topPen lineWidth="0.15" lineStyle="Solid"/>
+					<leftPen lineWidth="0.15" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.15" lineStyle="Solid"/>
+					<rightPen lineWidth="0.15" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["R$"+$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="464" y="0" width="91" height="21" uuid="7f1ddaad-9d2a-4700-9640-d218cb5119e9"/>
+				<box>
+					<pen lineWidth="0.15" lineStyle="Solid"/>
+					<topPen lineWidth="0.15" lineStyle="Solid"/>
+					<leftPen lineWidth="0.15" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.15" lineStyle="Solid"/>
+					<rightPen lineWidth="0.15" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{transacao.situacao.status}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="534261db-8f98-4b79-bde7-783972e10223"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="1" y="3" width="554" height="42" uuid="77d1693d-fe15-4c35-84ff-6d09e8974098"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Um total de "+$V{TOTAL_CONTA}+($F{transacao.situacao.situacaoId} == 6 ? " contas a vencer " :($F{transacao.situacao.situacaoId} == 1 ? " contas vencidas " : " contas recebidas "))+"estão cadastradas em sua base de dados. Esses dados podem ser visto com mais detalhes em seus respectivos modulos do sistema."]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="565ac312-0c35-41e5-8d2f-85f99bfc9079"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="dd930898-161b-44cd-9a42-4153189df2de"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="f5289af0-0939-4661-a1ee-8e1b273693ff"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="908ce352-0919-429d-9622-066ce212550d"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

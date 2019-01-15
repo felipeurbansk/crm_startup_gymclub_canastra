@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/10/2017 16:18:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="controller.Situacao" table="situacao" catalog="canastra" optimistic-lock="version">
+        <id name="situacaoId" type="java.lang.Integer">
+            <column name="situacao_id" />
+            <generator class="identity" />
+        </id>
+        <property name="status" type="string">
+            <column name="status" length="50" not-null="true" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="65535" not-null="true" />
+        </property>
+        <set name="transacaos" table="transacao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="situacao_situacao_id" not-null="true" />
+            </key>
+            <one-to-many class="controller.Transacao" />
+        </set>
+        <set name="chamados" table="chamado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="situacao_situacao_id" not-null="true" />
+            </key>
+            <one-to-many class="controller.Chamado" />
+        </set>
+    </class>
+</hibernate-mapping>

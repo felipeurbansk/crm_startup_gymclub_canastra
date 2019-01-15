@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/10/2017 16:18:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="controller.Nivelacesso" table="nivelacesso" catalog="canastra" optimistic-lock="version">
+        <id name="nivelAcessoId" type="java.lang.Integer">
+            <column name="nivelAcesso_id" />
+            <generator class="identity" />
+        </id>
+        <property name="nivel" type="java.lang.Integer">
+            <column name="nivel" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" />
+        </property>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="nivelAcesso_nivelAcesso_id" not-null="true" />
+            </key>
+            <one-to-many class="controller.Usuario" />
+        </set>
+    </class>
+</hibernate-mapping>
